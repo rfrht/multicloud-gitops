@@ -7,12 +7,20 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
+    - kuadrant-system
+    - istio-system
   subscriptions:
     acm:
       name: advanced-cluster-management
       namespace: open-cluster-management
       channel: release-2.10
       #csv: advanced-cluster-management.v2.6.1
+    kuadrant-operator:
+      name: kuadrant-operator
+      namespace: openshift-operators
+      source: community-operators
+      channel: stable
+
   projects:
     - hub
     - config-demo
@@ -68,6 +76,11 @@ clusterGroup:
       namespace: hello-world
       project: hello-world
       path: charts/all/hello-world
+    kuadrant:
+      name: kuadrant
+      namespace: kuadrant-system
+      project: hub
+      path: charts/all/kuadrant
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
